@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+        div {
+            font-size: 40px;
+        }
+        body {
+            text-align: center;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+</head>
+<body>
+    <h1>Brendan Pruden Lab4 - Stopwatch</h1>
+    <div id="output">00:00.0</div>
+    <br>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+
+    <script>
+        // Declare global variables
+        let minutes = 0;
+        let seconds = 0;
+        let tenths = 0;
+        let timer;
+
+        // Get references to buttons and output area
+        const startButton = document.getElementById('start');
+        const stopButton = document.getElementById('stop');
+        const resetButton = document.getElementById('reset');
+        const outputArea = document.getElementById('output');
+
+        // Event listeners for buttons
+        startButton.addEventListener('click', startTimer);
+        stopButton.addEventListener('click', stopTimer);
+        resetButton.addEventListener('click', resetTimer);
+
+        // Start the timer
+        function startTimer() {
+            if (!timer) {
+                timer = setInterval(showTimer, 100);
+            }
+        }
+
+        // Stop the timer
+        function stopTimer() {
+            clearInterval(timer);
+            timer = null;
+        }
+
+        // Reset the timer
+        function resetTimer() {
+            stopTimer();
+            minutes = 0;
+            seconds = 0;
+            tenths = 0;
+            updateOutput();
+        }
+
+        // Update the output area
+        function updateOutput() {
+            outputArea.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${tenths}`;
+        }
+
+        // Show the timer
+        function showTimer() {
+            tenths++;
+            if (tenths === 10) {
+                tenths = 0;
+                seconds++;
+                if (seconds === 60) {
+                    seconds = 0;
+                    minutes++;
+                }
+            }
+            updateOutput();
+        }
+
+    </script>
+</body>
+</html>
