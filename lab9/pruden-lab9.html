@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    canvas {
+      border: 1px solid #c3c3c3;
+    }
+  </style>
+  <title>Lab 9 - Canvas</title>
+</head>
+
+<body>
+  <h2>Brendan Pruden - IT 2320 - Lab 9</h2>
+  <canvas id="myCanvas" width="800" height="600">
+    Your browser does not support the canvas element.
+  </canvas>
+</body>
+<script>
+  window.onload = function () {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    ctx.font = '60px sans-serif';
+
+    var colors = ["#000000", "#FF0000", "#008000", "#0000FF", "#888888"];
+
+    //square
+    ctx.fillStyle = colors[0];
+    ctx.fillRect(0, 0, 100, 100);
+
+    //square 2
+    ctx.strokeStyle = colors[1];
+    ctx.strokeRect(700, 0, 100, 100);
+    ctx.beginPath();
+
+    //circle
+    ctx.arc(50, 550, 50, 0, 2 * Math.PI);
+    ctx.fillStyle = colors[2];
+    ctx.fill();
+    ctx.beginPath();
+
+    //circle 2
+    ctx.arc(750, 550, 50, 0, 2 * Math.PI);
+    ctx.strokeStyle = colors[3];
+    ctx.stroke();
+
+    //text
+    var txtSt = "Lab 9 - Canvas";
+    ctx.fillStyle = colors[4];
+    ctx.fillText(txtSt, 200, 300);
+  }
+</script>
+
+</html>
