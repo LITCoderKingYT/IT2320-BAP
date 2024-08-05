@@ -1,0 +1,92 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Shapes</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Brendan Pruden - IT 2320 - Lab 10 - Classes For Canvas Objects</h2>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <script>
+      
+      class Square 
+      {
+        constructor(x, y, ht, wd, color, filled) 
+        {
+          this.x = x;
+          this.y = y;
+          this.height = ht;
+          this.width = wd;
+          this.color = color;
+          this.filled = filled;
+        }
+
+        draw(ctx) 
+        {
+          ctx.beginPath();
+          ctx.rect(this.x, this.y, this.width, this.height);
+          ctx.fillStyle = this.color;
+          ctx.strokeStyle = this.color;
+
+          if (this.filled) 
+          {
+            ctx.fill();
+          } else {
+            ctx.stroke();
+          }
+        }
+      }
+
+      class Circle 
+      {
+        constructor(x, y, radius, color, filled) 
+        {
+          this.x = x;
+          this.y = y;
+          this.radius = radius;
+          this.color = color;
+          this.filled = filled;
+        }
+
+        draw(ctx) 
+        {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.strokeStyle = this.color;
+
+          if (this.filled) 
+          {
+            ctx.fill();
+          } else 
+          {
+            ctx.stroke();
+          }
+        }
+      }
+
+      window.onload = function()
+      {
+        var canvasElement = document.getElementById('myCanvas');
+        var ctx = canvasElement.getContext("2d");
+        var c1 = new Circle(250, 250, 40, 'red', true);
+        c1.draw(ctx);
+        var c2 = new Circle(150, 50, 30, 'black', false);
+        c2.draw(ctx);
+        var r1 = new Square(20, 20, 100, 100, 'green', true);
+        r1.draw(ctx);
+        for (var i = 0; i < 10; i++) 
+        {
+          var r2 = new Square(200 + (i * 10), 100 + (i * 5), 100, 100, 'blue', false);
+          r2.draw(ctx);
+        }
+      }
+    </script>
+  </body>
+  </html>
